@@ -4,7 +4,6 @@ import { selectTodos } from 'redux/selectors';
 
 export const TodoList = () => {
   const todos = useSelector(selectTodos);
-
   return (
     <Grid>
       {todos.length > 0 &&
