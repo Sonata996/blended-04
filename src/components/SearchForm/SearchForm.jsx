@@ -1,40 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 
-export class SearchForm extends Component {
-  state = {
-    query: '',
-  };
+export const SearchForm= ({onSubmit}) =>{
+const [ query, setQuery]= useState('')
 
-  handleInput = e => {
-    this.setState({
-      query: e.currentTarget.value,
-    });
-  };
 
-  handleSubmit = e => {
-    const { query } = this.state;
+const handleInput = (evt)=>{
+  setQuery(evt.currentTarget.value)
+}
 
-    e.preventDefault();
 
-    this.props.onSubmit(query);
 
-    this.setState({
-      query: '',
-    });
-  };
-  render() {
-    const { query } = this.state;
+const handleSubmit =(evt) =>{
+  evt.preventDefault()
+
+  onSubmit(query)
+  setQuery('')
+}
+
 
     return (
-      <SearchFormStyled onSubmit={this.handleSubmit}>
+      <SearchFormStyled onSubmit={handleSubmit}>
         <FormBtn type="submit">
           <FiSearch size="16px" />
         </FormBtn>
         <InputSearch
-          onChange={this.handleInput}
+          onChange={handleInput}
           placeholder="What do you want to write?"
           name="search"
           required
@@ -43,5 +36,4 @@ export class SearchForm extends Component {
         />
       </SearchFormStyled>
     );
-  }
 }
