@@ -6,12 +6,9 @@ import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 export const SearchForm= ({onSubmit}) =>{
 const [ query, setQuery]= useState('')
 
-
 const handleInput = (evt)=>{
   setQuery(evt.currentTarget.value)
 }
-
-
 
 const handleSubmit =(evt) =>{
   evt.preventDefault()
